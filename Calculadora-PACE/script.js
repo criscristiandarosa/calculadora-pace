@@ -38,6 +38,8 @@ function limpaTempo() {
 }
 
 // Variavel 'resultado' com escopo global para poder utilizá-la no calcular() e no novoCalculo()
+let tempoPercorrido = document.getElementById('tempoPercorrido')
+let distanciaPercorrida = document.getElementById('distanciaPercorrida')
 var resultado = document.getElementById('resultado')
 
 // Calculando o PACE:
@@ -52,7 +54,7 @@ function calcular() {
 
     // Verifica se o campo distância foi preenchido
     if (distancia === '') {
-        alert('Preencha o campo da distância percorrida!')
+        document.getElementById('alerta').innerHTML = 'Preencha o campo da distância percorrida!'
     } else {
         // Transformando em números reais os valores de cada imput
         horas = parseFloat(horas)
@@ -85,10 +87,14 @@ function calcular() {
                 // Exibindo o resultado
                 // Poderia ainda criar uma variável 'pace' na qual eu concatenaria os
                 // minutos inteiros, os segundos restantes e a string '/km'
+                tempoPercorrido.innerHTML = `Seu tempo: ${horas}h ${minutos}min ${segundos}s`
+                distanciaPercorrida.innerHTML = `Sua distância: ${distancia}km <br>`
                 resultado.innerHTML = `Seu PACE é de:<br>${minutosInteiros} minutos e ${parseInt(segundosRestantes)} segundos a cada km`
     
                 // Ocultando o botão CALCULAR PACE
                 // Habilitando o botão NOVO CÁLCULO
+                document.getElementById('instrucao').style.display = 'none'
+                document.getElementById('entradas').style.display = 'none'
                 document.getElementById("calcularPace").style.display = "none"
                 document.getElementById("novoCalculo").style.display = "block"
             }
@@ -102,11 +108,14 @@ function novoCalculo() {
     // Pode-se ainda colocar os comandos de limpeza dos dados numa function
     // caso queira usar em outra parte do programa mais tarde
     limpaTempo()
-    document.getElementById('distancia').value = ''
-    resultado.innerHTML = ''
-    
+    document.getElementById('distancia').value = '' 
     // Habilita novamente o botão CALCULAR PACE
     // Oculta novamente o botão NOVO CÁLCULO
+    resultado.innerHTML = ''
+    tempoPercorrido.innerHTML = ''
+    distanciaPercorrida.innerHTML = ''
+    document.getElementById('instrucao').style.display = 'block'
+    document.getElementById('entradas').style.display = 'block'
     document.getElementById("novoCalculo").style.display = "none"
     document.getElementById("calcularPace").style.display = "block"
 }
