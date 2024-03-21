@@ -37,10 +37,32 @@ function limpaTempo() {
     document.getElementById('segundos').value = ''
 }
 
-// Variavel 'resultado' com escopo global para poder utilizá-la no calcular() e no novoCalculo()
+// Variáveis com escopo global para poder utilizá-la no calcular() e no novoCalculo()
 let tempoPercorrido = document.getElementById('tempoPercorrido')
 let distanciaPercorrida = document.getElementById('distanciaPercorrida')
 var resultado = document.getElementById('resultado')
+
+let alertaVisivel = false
+
+// Função para exibir o alerta
+function exibirAlerta(mensagem) {
+    document.getElementById('alertaMensagem').innerText = mensagem
+    document.getElementById("alerta").style.display = "block"
+    alertaVisivel = true
+}
+
+// Função para ocultar o alerta
+function ocultarAlerta() {
+    document.getElementById("alerta").style.display = "none"
+    alertaVisivel = false
+}
+
+// Função para verificar e exibir o alerta
+function verificarEExibirAlerta(mensagem) {
+    if (!alertaVisivel) {
+        exibirAlerta(mensagem);
+    }
+}
 
 // Calculando o PACE:
 function calcular() {
@@ -54,13 +76,18 @@ function calcular() {
 
     // Verifica se o campo distância foi preenchido
     if (distancia === '') {
-        document.getElementById('alerta').innerHTML = 'Preencha o campo da distância percorrida!'
+        verificarEExibirAlerta('Preencha o campo da distância percorrida!')
+        return // Termina a função aqui para evitar que o restante do código seja executado
+        
     } else {
-        // Transformando em números reais os valores de cada imput
+        // Transformando em números reais os valores de cada imput que vem como texto
         horas = parseFloat(horas)
         minutos = parseFloat(minutos)
         segundos = parseFloat(segundos)
         distancia = parseFloat(distancia)
+
+        // Se cair aqui neste else, esconde o alerta.
+        ocultarAlerta()
 
         // Agora que tenho a distancia em número, posso verificar se ela é igual a zero
         if (distancia === 0) {
@@ -107,6 +134,7 @@ function novoCalculo() {
     // Limpar os campos preenchidos
     // Pode-se ainda colocar os comandos de limpeza dos dados numa function
     // caso queira usar em outra parte do programa mais tarde
+    ocultarAlerta()
     limpaTempo()
     document.getElementById('distancia').value = '' 
     // Habilita novamente o botão CALCULAR PACE

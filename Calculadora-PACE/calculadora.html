@@ -5,9 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Pace</title>
     <link rel="stylesheet" href="style.css">
+    
 </head>
     <link href="bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
 <body>
+
+    <div id="alerta" class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">
+        <span id="alertaMensagem" ></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
     <header>
         <h1>CALCULADORA DE PACE</h1>
     </header>
@@ -46,10 +53,6 @@
         <br>
         <div>
             <input id="novoCalculo" type="button" style="display: none;" value="NOVO CÁLCULO" onclick="novoCalculo()">
-        </div>
-
-        <div id="alerta" class="alert alert-danger" role="alert">
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
     </section>
