@@ -118,6 +118,10 @@ function calcular() {
                 // Exibindo o resultado
                 // Poderia ainda criar uma variável 'pace' na qual eu concatenaria os
                 // minutos inteiros, os segundos restantes e a string '/km'
+                // Quando estiver pronto para mostrar o resultado
+                document.getElementById('resultado').classList.remove('esconder')
+                document.getElementById('resultado').classList.add('mostrar')
+
                 tempoPercorrido.innerHTML = `Seu tempo: ${horas}h ${minutos}min ${segundos}s`
                 distanciaPercorrida.innerHTML = `Sua distância: ${distancia}km <br>`
                 resultado.innerHTML = `Seu PACE é de:<br>${minutosInteiros} minutos e ${parseInt(segundosRestantes)} segundos a cada km`
@@ -138,9 +142,11 @@ function novoCalculo() {
     // Limpar os campos preenchidos
     // Pode-se ainda colocar os comandos de limpeza dos dados numa function
     // caso queira usar em outra parte do programa mais tarde
+    document.getElementById('resultado').classList.remove('esconder');
     ocultarAlerta()
     limpaTempo()
     document.getElementById('distancia').value = '' 
+    
     // Habilita novamente o botão CALCULAR PACE
     // Oculta novamente o botão NOVO CÁLCULO
     resultado.innerHTML = ''

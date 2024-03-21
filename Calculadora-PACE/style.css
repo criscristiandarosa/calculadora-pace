@@ -39,7 +39,7 @@ section {
 
 /* Estilos dos campos de entrada */
 input[type="text"] {
-    width: 75px;
+    width: 85px;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -79,6 +79,25 @@ input[type="button"]:hover {
     transition: background-color 0.3s ease;
     margin: 10px; /* Adiciona um pequeno espaço entre os botões */
     text-align: center;
+}
+
+#resultado {
+
+}
+
+.esconder {
+    display: none;
+}
+
+.mostrar {
+    margin-top: 10px;
+    background: rgb(57, 109, 182);
+    border-radius: 10px;
+    padding: 15px;
+    width: 500px;
+    margin: auto;
+    box-shadow: 5px 5px 10px rgb(0, 0, 0);
+    color: white;
 }
 
 #novoCalculo {
