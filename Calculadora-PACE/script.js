@@ -91,7 +91,9 @@ function calcular() {
 
         // Agora que tenho a distancia em número, posso verificar se ela é igual a zero
         if (distancia === 0) {
-            alert('Informe um número maior que zero no campo da distância percorrida!')
+            verificarEExibirAlerta('Informe um número maior que zero no campo da distância percorrida!')
+            return // Termina a função aqui para evitar que o restante do código seja executado
+            
         } else {
             // Transformar segundos e horas em minutos
             // e somar a quantidade de minutos total
@@ -101,8 +103,10 @@ function calcular() {
             // pois do jeito que o programa ficou, ele acaba aceitando zero
             // em todos os campos do tempo
             if (totalMinutos === 0) {
-                alert('Insira corretamente o tempo percorrido!')
                 limpaTempo()
+                verificarEExibirAlerta('Insira corretamente o tempo percorrido!')
+                return // Termina a função aqui para evitar que o restante do código seja executado
+                
             } else {
                 var paceNaoFormatado = totalMinutos / distancia
                 console.log(paceNaoFormatado)
@@ -147,6 +151,3 @@ function novoCalculo() {
     document.getElementById("novoCalculo").style.display = "none"
     document.getElementById("calcularPace").style.display = "block"
 }
-
-
-// dar sugestoes de distancias pré definidas 5km 10km 21km 42km
