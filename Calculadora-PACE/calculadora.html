@@ -11,8 +11,8 @@
 <body>
 
     <div id="alerta" class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">
-        <span id="alertaMensagem" ></span>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <span id="alertaMensagem"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="fechouAlerta()"></button>
       </div>
 
     <header>
@@ -39,7 +39,7 @@
                     <td><input type="text" name="distancia" id="distancia" placeholder="km" oninput="limitarCasasDecimais(this)"></td>
                 </table>
             <br>
-            <p><input id="calcularPace" type="button" value="CALCULAR PACE" onclick="calcular()"></p>
+            <p id="botaoCalcularPace"><input id="calcularPace" type="button" value="CALCULAR PACE" onclick="calcular()"></p>
 
         </div>
 
@@ -51,7 +51,7 @@
         </div>
 
         <br>
-        <div>
+        <div id="botaoNovoCalculo">
             <input id="novoCalculo" type="button" style="display: none;" value="NOVO CÁLCULO" onclick="novoCalculo()">
         </div>
 

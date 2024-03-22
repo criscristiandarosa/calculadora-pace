@@ -81,15 +81,7 @@ input[type="button"]:hover {
     text-align: center;
 }
 
-#resultado {
-
-}
-
 .esconder {
-    display: none;
-}
-
-.mostrar {
     margin-top: 10px;
     background: rgb(57, 109, 182);
     border-radius: 10px;
@@ -100,8 +92,16 @@ input[type="button"]:hover {
     color: white;
 }
 
-#novoCalculo {
-    text-align: center;
+#botaoCalcularPace {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#botaoNovoCalculo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Estilos do rodapé */

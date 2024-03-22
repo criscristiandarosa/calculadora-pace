@@ -1,4 +1,4 @@
-// Validando a entrada dos dados.
+// Validando a entrada dos dados:
 
 // Deixa o usuário inserir apenas três caracteres numéricos. Corridas de mais de 999 horas não deve existir. 
 function validaHora(p) {
@@ -23,7 +23,7 @@ function validaSegundo(p) {
 function limitarCasasDecimais(input) {
     input.value = input.value.replace(/[^\d,]/g, '')
     if (input.value.includes(',')) {
-        var partes = input.value.split(',');
+        let partes = input.value.split(',');
         if (partes.length > 1 && partes[1].length > 3) {
             input.value = (partes[0] + ',' + partes[1].substring(0, 3));
         }
@@ -37,16 +37,28 @@ function limpaTempo() {
     document.getElementById('segundos').value = ''
 }
 
+// Limpa o campo de distância
+function limpaDistancia() {
+    document.getElementById('distancia').value = ''
+}
+
+// Limpa os campos de resultado
+function limpaResultado() {
+    resultado.innerHTML = ''
+    tempoPercorrido.innerHTML = ''
+    distanciaPercorrida.innerHTML = ''
+}
+
 // Variáveis com escopo global para poder utilizá-la no calcular() e no novoCalculo()
 let tempoPercorrido = document.getElementById('tempoPercorrido')
 let distanciaPercorrida = document.getElementById('distanciaPercorrida')
-var resultado = document.getElementById('resultado')
+let resultado = document.getElementById('resultado')
 
 let alertaVisivel = false
 
 // Função para exibir o alerta
 function exibirAlerta(mensagem) {
-    document.getElementById('alertaMensagem').innerText = mensagem
+    document.getElementById('alertaMensagem').innerHTML = mensagem
     document.getElementById("alerta").style.display = "block"
     alertaVisivel = true
 }
@@ -64,20 +76,30 @@ function verificarEExibirAlerta(mensagem) {
     }
 }
 
+// Função para deixar o alertaVisivel = false quando clico no x, para poder aparecer novamente caso necessário
+function fechouAlerta() {
+    alertaVisivel = false
+}
+
+// O site já inicializa com a estilização de onde vai aparecer o resultado removida
+document.getElementById('resultado').classList.remove('esconder')
+
+// ------------------------------------------------------------------------
+
 // Calculando o PACE:
 function calcular() {
     // Declarando as variáveis e atribuindo a elas '00' quando vierem vazias,
     // pois o usuário pode preencher só os minutos, por exemplo,
     // achando que o cálculo será feito somente em cima do campo minutos.
-    var horas = document.getElementById('horas').value.trim() || '000'
-    var minutos = document.getElementById('minutos').value.trim() || '00'
-    var segundos = document.getElementById('segundos').value.trim() || '00'
-    var distancia = document.getElementById("distancia").value.replace(',','.')
+    let horas = document.getElementById('horas').value.trim() || '000'
+    let minutos = document.getElementById('minutos').value.trim() || '00'
+    let segundos = document.getElementById('segundos').value.trim() || '00'
+    let distancia = document.getElementById("distancia").value.replace(',','.')
 
     // Verifica se o campo distância foi preenchido
     if (distancia === '') {
         verificarEExibirAlerta('Preencha o campo da distância percorrida!')
-        return // Termina a função aqui para evitar que o restante do código seja executado
+        // Termina a função aqui para evitar que o restante do código seja executado
         
     } else {
         // Transformando em números reais os valores de cada imput que vem como texto
@@ -97,7 +119,7 @@ function calcular() {
         } else {
             // Transformar segundos e horas em minutos
             // e somar a quantidade de minutos total
-            var totalMinutos = (horas * 60) + minutos + (segundos / 60)
+            let totalMinutos = (horas * 60) + minutos + (segundos / 60)
 
             // Validando se a soma acima é igual a zero,
             // pois do jeito que o programa ficou, ele acaba aceitando zero
@@ -108,28 +130,28 @@ function calcular() {
                 return // Termina a função aqui para evitar que o restante do código seja executado
                 
             } else {
-                var paceNaoFormatado = totalMinutos / distancia
-                console.log(paceNaoFormatado)
-
-                // Transformar minutos com casa decimal em minutos e segundos
-                var minutosInteiros = parseInt(paceNaoFormatado)
-                var segundosRestantes = (paceNaoFormatado - minutosInteiros) * 60
+                let paceNaoFormatado = totalMinutos / distancia
                 
+                // Transformar minutos com casa decimal em minutos e segundos
+                let minutosInteiros = parseInt(paceNaoFormatado)
+                let segundosRestantes = (paceNaoFormatado - minutosInteiros) * 60
+                
+                // Quando estiver pronto para mostrar o resultado, adiciono a estilização de onde vai aparecer o resultado
+                document.getElementById('resultado').classList.add('esconder')
+
                 // Exibindo o resultado
                 // Poderia ainda criar uma variável 'pace' na qual eu concatenaria os
                 // minutos inteiros, os segundos restantes e a string '/km'
-                // Quando estiver pronto para mostrar o resultado
-                document.getElementById('resultado').classList.remove('esconder')
-                document.getElementById('resultado').classList.add('mostrar')
-
                 tempoPercorrido.innerHTML = `Seu tempo: ${horas}h ${minutos}min ${segundos}s`
                 distanciaPercorrida.innerHTML = `Sua distância: ${distancia}km <br>`
                 resultado.innerHTML = `Seu PACE é de:<br>${minutosInteiros} minutos e ${parseInt(segundosRestantes)} segundos a cada km`
-    
-                // Ocultando o botão CALCULAR PACE
-                // Habilitando o botão NOVO CÁLCULO
+                
+                // Ocultando os seguintes campos dinamicamente
                 document.getElementById('instrucao').style.display = 'none'
                 document.getElementById('entradas').style.display = 'none'
+
+                // Ocultando o botão CALCULAR PACE
+                // Habilitando o botão NOVO CÁLCULO
                 document.getElementById("calcularPace").style.display = "none"
                 document.getElementById("novoCalculo").style.display = "block"
             }
@@ -139,19 +161,15 @@ function calcular() {
 
 // Quando o usuário clicar em NOVO CÁLCULO:
 function novoCalculo() {
-    // Limpar os campos preenchidos
-    // Pode-se ainda colocar os comandos de limpeza dos dados numa function
-    // caso queira usar em outra parte do programa mais tarde
-    document.getElementById('resultado').classList.remove('esconder');
+    // Limpar os campos preenchidos e esconder o a parte estilizada do resultado
+    document.getElementById('resultado').classList.remove('esconder')
+    // Preciso ocultar o alerta, caso o usuário cair numa validação antes de conseguir finalizar o cálculo e não ter apertado no x para ocultar o alerta
     ocultarAlerta()
     limpaTempo()
-    document.getElementById('distancia').value = '' 
-    
+    limpaDistancia()  
+    limpaResultado()
     // Habilita novamente o botão CALCULAR PACE
     // Oculta novamente o botão NOVO CÁLCULO
-    resultado.innerHTML = ''
-    tempoPercorrido.innerHTML = ''
-    distanciaPercorrida.innerHTML = ''
     document.getElementById('instrucao').style.display = 'block'
     document.getElementById('entradas').style.display = 'block'
     document.getElementById("novoCalculo").style.display = "none"
