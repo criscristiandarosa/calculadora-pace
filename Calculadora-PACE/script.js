@@ -77,9 +77,9 @@ function verificarEExibirAlerta(mensagem) {
 }
 
 // Função para deixar o alertaVisivel = false quando clico no x, para poder aparecer novamente caso necessário
-function fechouAlerta() {
-    alertaVisivel = false
-}
+// function fechouAlerta() {
+//     alertaVisivel = false
+// }
 
 // O site já inicializa com a estilização de onde vai aparecer o resultado removida
 document.getElementById('resultado').classList.remove('esconder')

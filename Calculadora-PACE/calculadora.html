@@ -4,65 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Pace</title>
-    <link rel="stylesheet" href="style.css">
     
 </head>
     <link href="bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
 <body>
+    <div class="container-fluid text-center">
+        <div id="alerta" class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">
+            <span id="alertaMensagem"></span>
+            <button type="button" class="btn-close" aria-label="Close" onclick="ocultarAlerta()"></button>
+        </div>
 
-    <div id="alerta" class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">
-        <span id="alertaMensagem"></span>
-        <button type="button" class="btn-close" aria-label="Close" onclick="ocultarAlerta()"></button>
-      </div>
+        <header>
+            <h1>CALCULADORA DE PACE</h1>
+        </header>
 
-    <header>
-        <h1>CALCULADORA DE PACE</h1>
-    </header>
+        <section class="container border rounded">
+            <!-- <h2 id="instrucao" >Informe seus dados:</h2> -->
 
-    <section>
-        <h2 id="instrucao" >Informe seus dados:</h2>
-
-        <div id="entradas">
-            
-                <table> Tempo Percorrido
-                    <tr>
-                        <td><input id="horas" type="text" maxlength="3" placeholder="horas" oninput="validaHora(this)"></td>
-                        <td id="doisPontos">:</td>
-                        <td><input id="minutos" type="text" maxlength="2" placeholder="minutos" oninput="validaMinuto(this)"></td>
-                        <td id="doisPontos">:</td>
-                        <td><input id="segundos" type="text" maxlength="2" placeholder="segundos" oninput="validaSegundo(this)"></td>
-                    </tr>
-                </table>
+            <div id="entradas" class="container">
+                
+                    <table class="table table-striped">
+                        <thead class="table-primary">
+                            <tr>
+                                <th colspan="5" style="text-align: center;"><i class="fa-solid fa-clock"></i> Tempo Percorrido</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            <tr>
+                                <td><input class="form-control text-center" id="horas" type="text" maxlength="3" placeholder="horas" oninput="validaHora(this)"></td>
+                                <td id="doisPontos"><strong>:</strong></td>
+                                <td><input class="form-control text-center" id="minutos" type="text" maxlength="2" placeholder="minutos" oninput="validaMinuto(this)"></td>
+                                <td id="doisPontos"><strong>:</strong></td>
+                                <td><input class="form-control text-center" id="segundos" type="text" maxlength="2" placeholder="segundos" oninput="validaSegundo(this)"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <table class="table table-striped">
+                        <thead class="table-primary">
+                            <tr>
+                                <th><i class="fa-solid fa-person-running"></i> Distância Percorrida</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input class="form-control text-center" type="text" name="distancia" id="distancia" placeholder="km" oninput="limitarCasasDecimais(this)"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 <br>
-                <br>
-                <table> Distância Percorrida
-                    <td><input type="text" name="distancia" id="distancia" placeholder="km" oninput="limitarCasasDecimais(this)"></td>
-                </table>
+                <p id="botaoCalcularPace"><input id="calcularPace" type="button" class="btn btn-success" value="CALCULAR PACE" onclick="calcular()"></p>
+
+            </div>
+
+            <div id="tempoPercorrido" ></div>
+            <div id="distanciaPercorrida" ></div>
+
+            <div id="resultado" class="esconder">
+                
+            </div>
+
             <br>
-            <p id="botaoCalcularPace"><input id="calcularPace" type="button" value="CALCULAR PACE" onclick="calcular()"></p>
+            <div id="botaoNovoCalculo">
+                <input id="novoCalculo" type="button" class="btn btn-success" style="display: none;" value="NOVO CÁLCULO" onclick="novoCalculo()">
+            </div>
 
-        </div>
+        </section>
 
-        <div id="tempoPercorrido" ></div>
-        <div id="distanciaPercorrida" ></div>
+        <footer>
+            <p>&copy; copyrights</p>
+        </footer>
 
-        <div id="resultado" class="esconder">
-            
-        </div>
-
-        <br>
-        <div id="botaoNovoCalculo">
-            <input id="novoCalculo" type="button" style="display: none;" value="NOVO CÁLCULO" onclick="novoCalculo()">
-        </div>
-
-    </section>
-
-    <footer>
-        <p>&copy; copyrights</p>
-    </footer>
-
-    <script src="script.js"></script>
-    <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js" ></script>
-    
+        <script src="script.js"></script>
+        <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js" ></script>
+    </div>    
 </body>
 </html>
