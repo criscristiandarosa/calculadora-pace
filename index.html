@@ -9,20 +9,26 @@
     <link href="bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-<body class="p-3 mb-2 bg-success-subtle text-success-emphasis">
+    <style>
+        #doisPontos {
+            width: 2px;
+        }
+    </style>
+
+<body class="bg-success-subtle text-success-emphasis">
     <div class="container text-center">
         <div id="alerta" class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">
             <span id="alertaMensagem"></span>
             <button type="button" class="btn-close" aria-label="Close" onclick="ocultarAlerta()"></button>
         </div>
 
-        <header>
+        <header class="p-3">
             <h1>CALCULADORA DE PACE</h1>
         </header>
 
-        <section class="container border rounded p-3 mb-2 bg-white text-dark">
+        <section class="border rounded p-1 mb-2 bg-white text-dark">
 
-            <div id="entradas" class="container">
+            <div id="entradas">
                 
                     <table class="table table-striped">
                         <thead class="table-primary">
