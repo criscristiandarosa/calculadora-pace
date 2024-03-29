@@ -42,17 +42,17 @@ function limpaDistancia() {
     document.getElementById('distancia').value = ''
 }
 
-// Limpa os campos de resultado
+// Limpa os campos que mostram o resultado final
 function limpaResultado() {
     resultado.innerHTML = ''
-    tempoPercorrido.innerHTML = ''
-    distanciaPercorrida.innerHTML = ''
+    // tempoPercorrido.innerHTML = ''
+    // distanciaPercorrida.innerHTML = ''
 }
 
 // Variáveis com escopo global para poder utilizá-la no calcular() e no novoCalculo()
-let tempoPercorrido = document.getElementById('tempoPercorrido')
-let distanciaPercorrida = document.getElementById('distanciaPercorrida')
-let resultado = document.getElementById('resultado')
+let tempoPercorrido = document.getElementById('resumoTempo')
+let distanciaPercorrida = document.getElementById('resumoDistancia')
+let resultado = document.getElementById('pace')
 
 let alertaVisivel = false
 
@@ -77,7 +77,7 @@ function verificarEExibirAlerta(mensagem) {
 }
 
 // O site já inicializa com a estilização de onde vai aparecer o resultado removida
-document.getElementById('resultado').classList.remove('esconder')
+//document.getElementById('resultado').classList.remove('esconder')
 
 // ------------------------------------------------------------------------
 
@@ -131,24 +131,23 @@ function calcular() {
                 let minutosInteiros = parseInt(paceNaoFormatado)
                 let segundosRestantes = (paceNaoFormatado - minutosInteiros) * 60
                 
-                // Quando estiver pronto para mostrar o resultado, adiciono a estilização de onde vai aparecer o resultado
-                document.getElementById('resultado').classList.add('esconder')
+                // Quando estiver pronto para mostrar o resultado, retiro a classe que deixou ocultado o elemento resultado
+                document.getElementById('resultado').classList.remove('d-none')
 
                 // Exibindo o resultado
                 // Poderia ainda criar uma variável 'pace' na qual eu concatenaria os
                 // minutos inteiros, os segundos restantes e a string '/km'
-                tempoPercorrido.innerHTML = `Seu tempo: ${horas}h ${minutos}min ${segundos}s`
-                distanciaPercorrida.innerHTML = `Sua distância: ${distancia}km <br>`
-                resultado.innerHTML = `Seu PACE é de:<br>${minutosInteiros} minutos e ${parseInt(segundosRestantes)} segundos a cada km`
+                resumoTempo.innerHTML = `Seu tempo: ${horas}h ${minutos}min ${segundos}s`
+                resumoDistancia.innerHTML = `Sua distância: ${distancia}km <br>`
+                pace.innerHTML = `${minutosInteiros}min e ${parseInt(segundosRestantes)}s a cada km`
                 
                 // Ocultando os seguintes campos dinamicamente
-                document.getElementById('instrucao').style.display = 'none'
-                document.getElementById('entradas').style.display = 'none'
+                document.getElementById('entradas').classList.add('d-none')
 
                 // Ocultando o botão CALCULAR PACE
                 // Habilitando o botão NOVO CÁLCULO
-                document.getElementById("calcularPace").style.display = "none"
-                document.getElementById("novoCalculo").style.display = "block"
+                document.getElementById("calcularPace").classList.add('d-none')
+                document.getElementById("novoCalculo").classList.add('d-block')
             }
         }
     }  
@@ -157,7 +156,7 @@ function calcular() {
 // Quando o usuário clicar em NOVO CÁLCULO:
 function novoCalculo() {
     // Limpar os campos preenchidos e esconder o a parte estilizada do resultado
-    document.getElementById('resultado').classList.remove('esconder')
+    document.getElementById('resultado').classList.add('d-none')
     // Preciso ocultar o alerta, caso o usuário cair numa validação antes de conseguir finalizar o cálculo e não ter apertado no x para ocultar o alerta
     ocultarAlerta()
     limpaTempo()
@@ -165,8 +164,7 @@ function novoCalculo() {
     limpaResultado()
     // Habilita novamente o botão CALCULAR PACE
     // Oculta novamente o botão NOVO CÁLCULO
-    document.getElementById('instrucao').style.display = 'block'
-    document.getElementById('entradas').style.display = 'block'
-    document.getElementById("novoCalculo").style.display = "none"
-    document.getElementById("calcularPace").style.display = "block"
+    document.getElementById('entradas').classList.remove('d-none')
+    document.getElementById("novoCalculo").classList.remove('d-block')
+    document.getElementById("calcularPace").classList.remove('d-none')
 }
