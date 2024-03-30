@@ -1,4 +1,4 @@
-// Validando a entrada dos dados:
+// PREPARANDO O PROGRAMA:
 
 // Deixa o usuário inserir apenas três caracteres numéricos. Corridas de mais de 999 horas não deve existir. 
 function validaHora(p) {
@@ -76,10 +76,7 @@ function verificarEExibirAlerta(mensagem) {
     }
 }
 
-// O site já inicializa com a estilização de onde vai aparecer o resultado removida
-//document.getElementById('resultado').classList.remove('esconder')
-
-// ------------------------------------------------------------------------
+// COMEÇANDO AS OPERAÇÕES:
 
 // Calculando o PACE:
 function calcular() {
@@ -139,7 +136,8 @@ function calcular() {
                 // minutos inteiros, os segundos restantes e a string '/km'
                 resumoTempo.innerHTML = `Seu tempo: ${horas}h ${minutos}min ${segundos}s`
                 resumoDistancia.innerHTML = `Sua distância: ${distancia}km <br>`
-                pace.innerHTML = `${minutosInteiros}min e ${parseInt(segundosRestantes)}s a cada km`
+                pace.innerHTML = `${minutosInteiros}'${parseInt(segundosRestantes)}" /km`
+                // pace.innerHTML = `${minutosInteiros}min e ${parseInt(segundosRestantes)}s a cada km`
                 
                 // Ocultando os seguintes campos dinamicamente
                 document.getElementById('entradas').classList.add('d-none')
