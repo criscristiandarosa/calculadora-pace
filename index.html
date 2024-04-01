@@ -10,6 +10,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
     <style>
+        @media (min-width: 576px) {
+            .container {
+                max-width: 600px; /* Ajuste conforme necessário */
+            }
+        }
+    </style>
+    
+    <style>
         #doisPontos {
             width: 2px;
         }
@@ -29,37 +37,36 @@
         <section class="border rounded p-1 mb-2 bg-white text-dark">
 
             <div id="entradas">
-                
-                    <table class="table table-striped">
-                        <thead class="table-primary">
-                            <tr>
-                                <th colspan="5" style="text-align: center;"><i class="fa-solid fa-clock"></i> Tempo Percorrido</th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-group-divider">
-                            <tr>
-                                <td><input class="form-control text-center" id="horas" type="text" maxlength="3" placeholder="horas" oninput="validaHora(this)"></td>
-                                <td id="doisPontos"><strong>:</strong></td>
-                                <td><input class="form-control text-center" id="minutos" type="text" maxlength="2" placeholder="minutos" oninput="validaMinuto(this)"></td>
-                                <td id="doisPontos"><strong>:</strong></td>
-                                <td><input class="form-control text-center" id="segundos" type="text" maxlength="2" placeholder="segundos" oninput="validaSegundo(this)"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <br>
-                    <br>
-                    <table class="table table-striped">
-                        <thead class="table-primary">
-                            <tr>
-                                <th><i class="fa-solid fa-person-running"></i> Distância Percorrida</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><input class="form-control text-center" type="text" name="distancia" id="distancia" placeholder="km" oninput="limitarCasasDecimais(this)"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <table class="table table-striped">
+                    <thead class="table-primary">
+                        <tr>
+                            <th><i class="fa-solid fa-person-running"></i> Distância Percorrida</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input class="form-control text-center" type="text" name="distancia" id="distancia" placeholder="km" oninput="limitarCasasDecimais(this)" autofocus></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <br>
+                <table class="table table-striped">
+                    <thead class="table-primary">
+                        <tr>
+                            <th colspan="5" style="text-align: center;"><i class="fa-solid fa-clock"></i> Tempo Percorrido</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <tr>
+                            <td><input class="form-control text-center" id="horas" type="text" maxlength="3" placeholder="horas" oninput="validaHora(this)"></td>
+                            <td id="doisPontos"><strong>:</strong></td>
+                            <td><input class="form-control text-center" id="minutos" type="text" maxlength="2" placeholder="minutos" oninput="validaMinuto(this)"></td>
+                            <td id="doisPontos"><strong>:</strong></td>
+                            <td><input class="form-control text-center" id="segundos" type="text" maxlength="2" placeholder="segundos" oninput="validaSegundo(this)"></td>
+                        </tr>
+                    </tbody>
+                </table>
                 <br>
                 <p id="botaoCalcularPace"><input id="calcularPace" type="button" class="btn btn-success" value="CALCULAR PACE" onclick="calcular()"></p>
 
