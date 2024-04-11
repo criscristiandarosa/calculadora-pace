@@ -25,7 +25,7 @@
 
 <body class="bg-success-subtle text-success-emphasis">
     <div class="container text-center">
-        <div id="alerta" class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">
+        <div id="alerta" class="alert alert-danger alert-dismissible fade show m-0" role="alert" style="display: none;">
             <span id="alertaMensagem"></span>
             <button type="button" class="btn-close" aria-label="Close" onclick="ocultarAlerta()"></button>
         </div>
@@ -34,7 +34,7 @@
             <h1>CALCULADORA DE PACE</h1>
         </header>
 
-        <section class="border rounded p-1 mb-2 bg-white text-dark">
+        <section class="border rounded py-2 px-1 mb-2 bg-white text-dark">
 
             <div id="entradas">
                 <table class="table table-striped">
@@ -50,7 +50,6 @@
                     </tbody>
                 </table>
                 <br>
-                <br>
                 <table class="table table-striped">
                     <thead class="table-primary">
                         <tr>
@@ -60,11 +59,11 @@
                     <tbody class="table-group-divider">
                         <tr>
                             <td class="align-middle"><input class="form-control text-center" id="horas" type="text" maxlength="3" placeholder="horas" oninput="validaHora(this)"></td>
-                            <td class="align-middle">
+                            <td class="align-middle p-0">
                                 <strong>:</strong>
                             </td>
                             <td class="align-middle"><input class="form-control text-center" id="minutos" type="text" maxlength="2" placeholder="min" oninput="validaMinuto(this)"></td>
-                            <td class="align-middle">
+                            <td class="align-middle p-0">
                                 <strong>:</strong>
                             </td>
                             <td class="align-middle"><input class="form-control text-center" id="segundos" type="text" maxlength="2" placeholder="seg" oninput="validaSegundo(this)"></td>
@@ -73,21 +72,20 @@
                     </tbody>
                 </table>
                 <br>
-                <p id="botaoCalcularPace"><input id="calcularPace" type="button" class="btn btn-success" value="CALCULAR PACE" onclick="calcular()"></p>
+                <div id="botaoCalcularPace"><input id="calcularPace" type="button" class="btn btn-success m-0" value="CALCULAR PACE" onclick="calcular()"></div>
 
             </div>
 
             <div id="resultado" class="card border-primary mb-3 d-none text-center mx-auto" style="max-width: 18rem;">
                 <div class="card-header">SEU PACE</div>
                 <div class="card-body text-secondary">
-                  <h5 id="pace" class="card-title text-success"></h5>
+                  <h5 id="pace" class="card-title text-success fs-3"></h5>
                   <hr>
-                  <p id="resumoTempo"class="card-text"></p>
+                  <p id="resumoTempo"class="card-text m-0"></p>
                   <p id="resumoDistancia"class="card-text"></p>
                 </div>
               </div>
 
-            <br>
             <div id="botaoNovoCalculo" class="d-flex justify-content-center">
                 <input id="novoCalculo" type="button" class="btn btn-success" style="display: none;" value="NOVO CÁLCULO" onclick="novoCalculo()">
             </div>
